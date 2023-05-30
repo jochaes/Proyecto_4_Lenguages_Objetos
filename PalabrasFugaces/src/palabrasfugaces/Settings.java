@@ -16,10 +16,13 @@ public class Settings {
     private JButton showInstructions_btn;
     private JButton showStats_btn;
     private JLabel gameTitle_lbl;
+    private SoundPlayer soundPlayer;
 
     FocusListener focusListener;
 
     public Settings(){
+        soundPlayer = SoundPlayer.getInstance();
+
         settingsPanel.setPreferredSize(new Dimension(300, 300));
         playerName_tf.setToolTipText("Escriba su nombre de jugador");
         setPlaceHolder();
@@ -34,16 +37,17 @@ public class Settings {
     }
 
     private void setPlaceHolder(){
-        playerName_tf.setText("Escriba su nombre de jugador");
 
         focusListener = new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
+
                 if (playerName_tf.getText().equals("Escriba su nombre de jugador")){
                     playerName_tf.setText("");
+                }else{
+                    playerName_tf.setText("Escriba su nombre de jugador");
                 }
             }
-
             @Override
             public void focusLost(FocusEvent e) {
                 System.out.println("focus lost");
@@ -55,13 +59,16 @@ public class Settings {
 
         playerName_tf.addFocusListener(focusListener);
 
-
     }
 
     private void showInstructions(){
+        try {
+            soundPlayer.playPopUpMenu();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         String [] message =
-
         {
             "\t\t\tGeneral",
                 "Por cada palabra escrita correctamente se sumaran 3 puntos",
@@ -73,15 +80,19 @@ public class Settings {
                 "Presionar barra espaciadora para volver a ver la palabra, obtiene 1 punto, si acierta la palabra",
                 "Solo escriba la palabra en el espacio indicado"
         };
-
         JOptionPane.showMessageDialog(settingsPanel, message,"Instrucciones", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
     private void showStats(){
+        try {
+            soundPlayer.playPopUpMenu();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         String [] stats = {"\t\t\tJugador", "Puntaje", "Vidas"};
-        JOptionPane.showMessageDialog(settingsPanel, stats,"Stadisticas", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(settingsPanel, stats,"Stadísticas", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public JPanel getSettingsPanel() {
@@ -93,6 +104,11 @@ public class Settings {
     }
 
     public String getPlayerName() {
-        return playerName_tf.getText();
+
+        if (playerName_tf.getText().equals("Escriba su nombre de jugador") || playerName_tf.getText().isEmpty()){
+            return "";
+        }else{
+            return playerName_tf.getText();
+        }
     }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.channels.SeekableByteChannel;
 
 public class Start extends JInternalFrame implements GameFunction {
-    private DataSingleton data = DataSingleton.getInstance();
+    private DataSingleton data;
     private SoundPlayer soundPlayer;
 
     private JInternalFrame mainFrame;
@@ -22,10 +22,12 @@ public class Start extends JInternalFrame implements GameFunction {
     private Game gamePanel;
 
     public Start() {
-        soundPlayer = new SoundPlayer();
+        soundPlayer = SoundPlayer.getInstance();
+        data = DataSingleton.getInstance();
+
 
         try {
-            soundPlayer.playStartGame();
+            soundPlayer.playStartApp();
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
@@ -50,10 +52,16 @@ public class Start extends JInternalFrame implements GameFunction {
 
     private void addStartGameAction(JButton button){
 
-        button.addActionListener(e -> {
+        button.addActionListener(event -> {
+
+            try {
+                soundPlayer.playStartGame();
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+                e.printStackTrace();
+            }
+
             getContentPane().removeAll();
             getContentPane().add(gamePanel.getGamePanel());
-
             pack();
         });
 

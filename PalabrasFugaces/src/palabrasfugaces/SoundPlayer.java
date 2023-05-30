@@ -18,20 +18,31 @@ public class SoundPlayer {
     private String popUpMenu = "src/Resources/Sounds/popUpMenu.wav";
     private String startGame = "src/Resources/Sounds/startGame2.wav";
 
+
+
     private String verPalabra = "src/Resources/Sounds/verPalabra.wav";
-
-
 
     private File soundFile;
 
     private AudioInputStream audioIn;
 
+    private Clip clip;
 
+    private static SoundPlayer instance = new SoundPlayer();
+
+    public static SoundPlayer getInstance(){
+        return instance;
+    }
 
     private void playSound( AudioInputStream audioIn ) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        Clip clip = AudioSystem.getClip();
+        clip = AudioSystem.getClip();
         clip.open(audioIn);
         clip.start();
+    }
+
+    public void stopSound() {
+        clip.stop();
+        clip.close();
     }
 
     public void playContador() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
@@ -77,6 +88,14 @@ public class SoundPlayer {
     public void playStartGame() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
         soundFile = new File(startGame).getAbsoluteFile();
+        audioIn = AudioSystem.getAudioInputStream(soundFile);
+        playSound(audioIn);
+
+    }
+
+    public void playStartApp() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+
+        soundFile = new File(sword).getAbsoluteFile();
         audioIn = AudioSystem.getAudioInputStream(soundFile);
         playSound(audioIn);
 
