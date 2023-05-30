@@ -20,6 +20,9 @@ public class Game {
     private JTextField inputJugador_tf;
     private JToolBar statsJugador_tb;
 
+    private ImageIcon heartIcon;
+    private ImageIcon staminaIcon;
+
     public Game(){
 
         gamePanel.setPreferredSize(new Dimension(300, 300));
@@ -27,6 +30,19 @@ public class Game {
         statsJugador_tb.setFloatable(false);
         panelPalabra_tp.setEditable(false);
         centerTextPane();
+
+        try{
+            InputStream heartIS = new BufferedInputStream(getClass().getResourceAsStream("/Imgs/heart-sm.png"));
+            Image heartImage = ImageIO.read(heartIS);
+
+            InputStream staminaIS = new BufferedInputStream(getClass().getResourceAsStream("/Imgs/stamina-sm.png"));
+            Image staminaImage = ImageIO.read(staminaIS);
+
+            this.heartIcon = new ImageIcon(heartImage);
+            this.staminaIcon = new ImageIcon(staminaImage);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
 
         setToolbarIcons(3, 3);
     }
@@ -42,29 +58,14 @@ public class Game {
     }
 
     private void setToolbarIcons(int hearts, int stamina){
-        try {
 
-            InputStream heartIS = new BufferedInputStream(getClass().getResourceAsStream("/Imgs/heart-sm.png"));
-            Image heartImage = ImageIO.read(heartIS);
-
-            InputStream staminaIS = new BufferedInputStream(getClass().getResourceAsStream("/Imgs/stamina-sm.png"));
-            Image staminaImage = ImageIO.read(staminaIS);
-
-
-            ImageIcon heartIcon = new ImageIcon(heartImage);
-            ImageIcon staminaIcon = new ImageIcon(staminaImage);
-
+        for (int i = 0; i < hearts; i++) {
             statsJugador_tb.add(new JLabel(heartIcon));
-            statsJugador_tb.add(new JLabel(staminaIcon));
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-
-
-
-
+        for (int i = 0; i < stamina; i++) {
+            statsJugador_tb.add(new JLabel(staminaIcon));
+        }
     }
 
     private void centerTextPane(){
