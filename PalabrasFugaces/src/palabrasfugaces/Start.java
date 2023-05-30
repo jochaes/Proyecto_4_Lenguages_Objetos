@@ -4,19 +4,31 @@ import gamesInterface.GameFunction;
 import gamesInterface.Stat;
 import palabrasfugaces.Settings;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.xml.crypto.Data;
+import java.io.IOException;
 import java.nio.channels.SeekableByteChannel;
 
 public class Start extends JInternalFrame implements GameFunction {
     private DataSingleton data = DataSingleton.getInstance();
+    private SoundPlayer soundPlayer;
 
     private JInternalFrame mainFrame;
     private JPanel mainPanel;
 
     private Settings settingsPanel;
     private Game gamePanel;
+
     public Start() {
+        soundPlayer = new SoundPlayer();
+
+        try {
+            soundPlayer.playStartGame();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
 
         mainFrame = this;
         mainFrame.setTitle("Palabras Fugaces");
@@ -41,6 +53,7 @@ public class Start extends JInternalFrame implements GameFunction {
         button.addActionListener(e -> {
             getContentPane().removeAll();
             getContentPane().add(gamePanel.getGamePanel());
+
             pack();
         });
 
