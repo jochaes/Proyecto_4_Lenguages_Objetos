@@ -1,32 +1,38 @@
 package palabrasfugaces;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import javax.print.DocFlavor;
 import javax.sound.sampled.*;
 
 public class SoundPlayer {
 
-    private String sword = "src/Resources/Sounds/Master_Sword_Get.wav";
-    private String timer = "src/Resources/Sounds/Korog_Timer.flac";
+    private String sword = "/Sounds/Master_Sword_Get.wav";
+    private String timer = "/Sounds/Korog_Timer.flac";
 
     //Sonidos del Juego
-    private String contador = "src/Resources/Sounds/contador.wav";
-    private String endGame = "src/Resources/Sounds/endGame.wav";
-    private String letraNo = "src/Resources/Sounds/letraNo.wav";
+    private String contador = "/Sounds/contador.wav";
+    private String endGame = "/Sounds/endGame.wav";
+    private String letraNo = "/Sounds/letraNo.wav";
 
-    private String letraOk = "src/Resources/Sounds/letraOk.wav";
-    private String popUpMenu = "src/Resources/Sounds/popUpMenu.wav";
-    private String startGame = "src/Resources/Sounds/startGame2.wav";
+    private String letraOk = "/Sounds/letraOk.wav";
+    private String popUpMenu = "/Sounds/popUpMenu.wav";
+    private String startGame = "/Sounds/startGame2.wav";
 
 
 
-    private String verPalabra = "src/Resources/Sounds/verPalabra.wav";
+    private String verPalabra = "/Sounds/verPalabra.wav";
 
     private File soundFile;
 
     private AudioInputStream audioIn;
 
     private Clip clip;
+    InputStream audioSrc;
+    InputStream bufferedIn;
 
     private static SoundPlayer instance = new SoundPlayer();
 
@@ -34,11 +40,21 @@ public class SoundPlayer {
         return instance;
     }
 
-    private void playSound( AudioInputStream audioIn ) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+
+    private void playSound( String soundName) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+
+        audioSrc = getClass().getResourceAsStream(soundName);
+        //add buffer for mark/reset support
+        assert audioSrc != null;
+        bufferedIn = new BufferedInputStream(audioSrc);
+        audioIn= AudioSystem.getAudioInputStream(bufferedIn);
+
         clip = AudioSystem.getClip();
         clip.open(audioIn);
         clip.start();
     }
+
+
 
     public void stopSound() {
         clip.stop();
@@ -47,66 +63,42 @@ public class SoundPlayer {
 
     public void playContador() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
-        soundFile = new File(contador).getAbsoluteFile();
-        audioIn = AudioSystem.getAudioInputStream(soundFile);
-        playSound(audioIn);
+        playSound(contador);
 
     }
 
     public void playEndGame() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
-        soundFile = new File(endGame).getAbsoluteFile();
-        audioIn = AudioSystem.getAudioInputStream(soundFile);
-        playSound(audioIn);
-
+        playSound(endGame);
     }
 
     public void playLetraNo() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-
-        soundFile = new File(letraNo).getAbsoluteFile();
-        audioIn = AudioSystem.getAudioInputStream(soundFile);
-        playSound(audioIn);
-
+        playSound(letraNo);
     }
 
     public void playLetraOk() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
-        soundFile = new File(letraOk).getAbsoluteFile();
-        audioIn = AudioSystem.getAudioInputStream(soundFile);
-        playSound(audioIn);
+        playSound(letraOk);
 
     }
 
     public void playPopUpMenu() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-
-        soundFile = new File(popUpMenu).getAbsoluteFile();
-        audioIn = AudioSystem.getAudioInputStream(soundFile);
-        playSound(audioIn);
-
+        playSound(popUpMenu);
     }
 
     public void playStartGame() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
 
-        soundFile = new File(startGame).getAbsoluteFile();
-        audioIn = AudioSystem.getAudioInputStream(soundFile);
-        playSound(audioIn);
+
+        playSound(startGame);
 
     }
 
     public void playStartApp() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-
-        soundFile = new File(sword).getAbsoluteFile();
-        audioIn = AudioSystem.getAudioInputStream(soundFile);
-        playSound(audioIn);
-
+        playSound(sword);
     }
 
     public void playVerPalabra() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-
-        soundFile = new File(verPalabra).getAbsoluteFile();
-        audioIn = AudioSystem.getAudioInputStream(soundFile);
-        playSound(audioIn);
-
+        playSound(verPalabra);
     }
 
 

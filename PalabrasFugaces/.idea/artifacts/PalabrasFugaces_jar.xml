@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/PalabrasFugaces_jar</output-path>
     <root id="archive" name="PalabrasFugaces.jar">
       <element id="module-output" name="PalabrasFugaces" />
+      <element id="dir-copy" path="$PROJECT_DIR$/Resources" />
     </root>
   </artifact>
 </component>

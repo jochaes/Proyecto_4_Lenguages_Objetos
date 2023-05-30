@@ -5,6 +5,13 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.Dimension;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import java.awt.Image;
 
 public class Game {
     private JPanel gamePanel;
@@ -35,11 +42,29 @@ public class Game {
     }
 
     private void setToolbarIcons(int hearts, int stamina){
-        ImageIcon heartIcon = new ImageIcon("src/Resources/Imgs/heart-sm.png");
-        ImageIcon staminaIcon = new ImageIcon("src/Resources/Imgs/stamina-sm.png");
+        try {
 
-        statsJugador_tb.add(new JLabel(heartIcon));
-        statsJugador_tb.add(new JLabel(staminaIcon));
+            InputStream heartIS = new BufferedInputStream(getClass().getResourceAsStream("/Imgs/heart-sm.png"));
+            Image heartImage = ImageIO.read(heartIS);
+
+            InputStream staminaIS = new BufferedInputStream(getClass().getResourceAsStream("/Imgs/stamina-sm.png"));
+            Image staminaImage = ImageIO.read(staminaIS);
+
+
+            ImageIcon heartIcon = new ImageIcon(heartImage);
+            ImageIcon staminaIcon = new ImageIcon(staminaImage);
+
+            statsJugador_tb.add(new JLabel(heartIcon));
+            statsJugador_tb.add(new JLabel(staminaIcon));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
     }
 
     private void centerTextPane(){
@@ -50,7 +75,7 @@ public class Game {
         StyleConstants.setFontSize(center, 30);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
         panelPalabra_tp.setFocusable(false);
-        panelPalabra_tp.setText("Escriba la Palabra: PALABRA");
+        panelPalabra_tp.setText("Escriba la Palabra:\n PALABRA");
     }
 
 
