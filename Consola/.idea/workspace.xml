@@ -4,13 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f5dd910-5d3c-4482-8c2f-09476e953b19" name="Changes" comment="" />
+    <list default="true" id="0f5dd910-5d3c-4482-8c2f-09476e953b19" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamesInterface/GameFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamesInterface/Stat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/proyecto/consola/DataSingleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PalabrasFugaces/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PalabrasFugaces/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PalabrasFugaces/src/gamesInterface/GameFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PalabrasFugaces/src/gamesInterface/Stat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PalabrasFugaces/src/palabrasfugaces/DataSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/proyecto/consola/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proyecto/consola/GameApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/proyecto/consola/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/proyecto/consola/StartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/proyecto/consola/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/proyecto/consola/start-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PalabrasFugaces/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PalabrasFugaces/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PalabrasFugaces/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PalabrasFugaces/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PalabrasFugaces/src/main/java/proyecto/palabrasfugaces/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PalabrasFugaces/src/palabrasfugaces/GameApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PalabrasFugaces/src/main/java/proyecto/palabrasfugaces/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PalabrasFugaces/src/palabrasfugaces/StartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PalabrasFugaces/src/main/resources/proyecto/palabrasfugaces/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../PalabrasFugaces/src/main/resources/palabrasfugaces/start-view.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="2QTwrkaHhFNLsHYNnkvfm08n75S" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -19,11 +56,27 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "settings.sync",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/gilda/Desktop/Repositorios/Proyecto_4_Lenguages_Objetos/Consola",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.general",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/proyecto" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -33,10 +86,15 @@
       <option name="presentableId" value="Default" />
       <updated>1685391080414</updated>
       <workItem from="1685391083690" duration="240000" />
+      <workItem from="1685418113736" duration="2863000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

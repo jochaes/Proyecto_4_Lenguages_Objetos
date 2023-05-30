@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PalabrasFugaces:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PalabrasFugaces_jar</output-path>
+    <root id="archive" name="PalabrasFugaces.jar">
+      <element id="module-output" name="PalabrasFugaces" />
+    </root>
+  </artifact>
+</component>
