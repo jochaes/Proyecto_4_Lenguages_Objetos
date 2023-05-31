@@ -22,8 +22,6 @@ public class SoundPlayer {
     private String popUpMenu = "/Sounds/popUpMenu.wav";
     private String startGame = "/Sounds/startGame2.wav";
 
-
-
     private String verPalabra = "/Sounds/verPalabra.wav";
 
     private File soundFile;

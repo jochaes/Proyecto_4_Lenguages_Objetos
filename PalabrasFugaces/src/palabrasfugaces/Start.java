@@ -26,11 +26,11 @@ public class Start extends JInternalFrame implements GameFunction {
         data = DataSingleton.getInstance();
 
 
-        try {
-            soundPlayer.playStartApp();
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            soundPlayer.playStartApp();
+//        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+//            e.printStackTrace();
+//        }
 
         mainFrame = this;
         mainFrame.setTitle("Palabras Fugaces");
@@ -43,8 +43,6 @@ public class Start extends JInternalFrame implements GameFunction {
 
         addStartGameAction(settingsPanel.getStartGameBtn());
         goToStartAction(gamePanel.getGoStartBtn());
-
-
         getContentPane().add(settingsPanel.getSettingsPanel());
 
         pack();
@@ -53,30 +51,51 @@ public class Start extends JInternalFrame implements GameFunction {
     private void addStartGameAction(JButton button){
 
         button.addActionListener(event -> {
+            String nombre = settingsPanel.getPlayerName();
 
-            try {
-                soundPlayer.playStartGame();
-            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-                e.printStackTrace();
+            if (nombre.isEmpty()){
+                try {
+                    soundPlayer.playLetraNo();
+                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+                    e.printStackTrace();
+                }
+                JOptionPane.showMessageDialog(null, "Debe ingresar un nombre de jugador", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }else{
+                try {
+                    soundPlayer.playStartGame();
+                } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+                    e.printStackTrace();
+                }
+                getContentPane().removeAll();
+                getContentPane().add(gamePanel.getGamePanel());
+                pack();
+                gamePanel.startGame(  settingsPanel.getPlayerName() );
             }
-
-            getContentPane().removeAll();
-            getContentPane().add(gamePanel.getGamePanel());
-            pack();
         });
-
     }
 
     private void goToStartAction(JButton button){
         button.addActionListener(e -> {
+
+            try {
+                soundPlayer.playEndGame();
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException unsupportedAudioFileException) {
+                unsupportedAudioFileException.printStackTrace();
+            }
+
+            String stats = "Última Puntuación\n" +
+                    "Jugador: " + data.getNombre() + "\n" +
+                    "Puntaje: " + data.getValor() + "\n";
+
+            JOptionPane.showMessageDialog(this, stats,"Estadísticas", JOptionPane.INFORMATION_MESSAGE);
+
+
             getContentPane().removeAll();
             getContentPane().add(settingsPanel.getSettingsPanel());
             pack();
         });
     }
-
-
-
 
     @Override
     public Stat getStats() {

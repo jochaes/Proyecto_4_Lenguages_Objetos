@@ -16,16 +16,20 @@ public class Settings {
     private JButton showInstructions_btn;
     private JButton showStats_btn;
     private JLabel gameTitle_lbl;
+    private JLabel setPlayerName_tf;
     private SoundPlayer soundPlayer;
+    private DataSingleton data;
 
     FocusListener focusListener;
 
     public Settings(){
+        data = DataSingleton.getInstance();
         soundPlayer = SoundPlayer.getInstance();
 
+        gameTitle_lbl.setText("¡Bienvenido a Palabras Fugaces!");
+
         settingsPanel.setPreferredSize(new Dimension(300, 300));
-        playerName_tf.setToolTipText("Escriba su nombre de jugador");
-        setPlaceHolder();
+        setPlayerName_tf.setText("Nombre de Jugador");
 
         showInstructions_btn.setText("Instrucciones");
         showInstructions_btn.addActionListener(e -> showInstructions());
@@ -34,31 +38,7 @@ public class Settings {
         showStats_btn.addActionListener(e -> showStats());
 
         getStartGameBtn().setText("Iniciar Juego");
-    }
-
-    private void setPlaceHolder(){
-
-        focusListener = new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-
-                if (playerName_tf.getText().equals("Escriba su nombre de jugador")){
-                    playerName_tf.setText("");
-                }else{
-                    playerName_tf.setText("Escriba su nombre de jugador");
-                }
-            }
-            @Override
-            public void focusLost(FocusEvent e) {
-                System.out.println("focus lost");
-                if (playerName_tf.getText().isEmpty()){
-                    playerName_tf.setText("Escriba su nombre de jugador");
-                }
-            }
-        };
-
-        playerName_tf.addFocusListener(focusListener);
-
+        getStartGameBtn().requestFocus();
     }
 
     private void showInstructions(){
@@ -72,13 +52,20 @@ public class Settings {
         {
             "\t\t\tGeneral",
                 "Por cada palabra escrita correctamente se sumaran 3 puntos",
-                "Por cada palabra escrita incorrectamente se restara una vida",
+                "Por cada *letra* incorrecta se restará una vida",
+                "La palabra se reviza automáticamente cuando se va escribiendo, no hay necesidad de presionar enter u otro botón.",
+                " ",
                 "\t\t\tVidas",
-                "El jugador comienza con 3 vidas",
+                "El jugador empieza con 3 vidas",
                 "Si el jugador se queda sin vidas, el juego termina",
+                " ",
                 "\t\t\tControles",
-                "Presionar barra espaciadora para volver a ver la palabra, obtiene 1 punto, si acierta la palabra",
-                "Solo escriba la palabra en el espacio indicado"
+                "La barra espaciadora le permite volver a ver la palabra, si la acierta sólo obtendrá un punto",
+                "Sólo puede realizar esta acción 3 veces en total",
+                " ",
+                " ",
+                "ITCR-SLSC * Escuela de Computación * Lenguajes * I Semestre 2023 * Josue Chaves"
+
         };
         JOptionPane.showMessageDialog(settingsPanel, message,"Instrucciones", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -91,8 +78,11 @@ public class Settings {
             e.printStackTrace();
         }
 
-        String [] stats = {"\t\t\tJugador", "Puntaje", "Vidas"};
-        JOptionPane.showMessageDialog(settingsPanel, stats,"Stadísticas", JOptionPane.INFORMATION_MESSAGE);
+        String stats = "Última Puntuación\n" +
+                "Jugador: " + data.getNombre() + "\n" +
+                "Puntaje: " + data.getValor() + "\n";
+
+        JOptionPane.showMessageDialog(settingsPanel, stats,"Estadísticas", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public JPanel getSettingsPanel() {
