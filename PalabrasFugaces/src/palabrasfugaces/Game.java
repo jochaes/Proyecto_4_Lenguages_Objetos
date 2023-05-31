@@ -168,7 +168,7 @@ public class Game {
                     }
                 }else{
                     if( data.getPalabraActual().equals(inputJugador_tf.getText()) ){
-                        System.out.println("Palabra Correcta ");
+//                        System.out.println("Palabra Correcta ");
                         data.agregarPuntos();
                         inputJugador_tf.setText("");
                         runTimerNextWord();
