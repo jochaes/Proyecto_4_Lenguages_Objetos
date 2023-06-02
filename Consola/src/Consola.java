@@ -27,8 +27,6 @@ public class Consola extends JFrame {
 
     public Consola(){
 
-
-
         //Inicializar la interfaz
         this.juegoManager = new JuegoManagerJC();
         setTitle("Consola de Juegos");
@@ -76,7 +74,6 @@ public class Consola extends JFrame {
                 try {
                     File file = showSaveDialog();
 
-
                     if (file != null && !juegoManager.yaExiste(file.getName())) {
                         JarInputStream jarStream = new JarInputStream(new FileInputStream(file));
                         Manifest mf = jarStream.getManifest();
@@ -101,6 +98,8 @@ public class Consola extends JFrame {
                         setCargarJuegoMenuItem(juego);
                         juegosMenu.add(juego);
 
+                    }else {
+                        JOptionPane.showMessageDialog(jdp, "Ya existe una instancia de este juego");
                     }
                 } catch (MalformedURLException | InstantiationException | IllegalAccessException | ClassNotFoundException | InvocationTargetException |
                          NoSuchMethodException ex) {
@@ -152,7 +151,6 @@ public class Consola extends JFrame {
                 if( !stats.isEmpty()){
                     showStats.actualizarStatsTable(statsTable ,columns);
                 }
-                System.out.println(stats);
             }
         });
     }
