@@ -1,3 +1,21 @@
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ *
+ * Curso de Lenguajes de Programación
+ *
+ * Proyecto 4: Juego de Palabras Fugaces
+ *
+ * Estudiante: Josué Chaves Araya - 2015094068
+ *
+ * I Semestre 2023
+ */
+
+
+
+//Esta clase se encarga de manejar la interfaz gráfica de la pantalla de incio
+
+
 package palabrasfugaces;
 
 import javax.swing.*;
@@ -41,6 +59,7 @@ public class Settings {
         getStartGameBtn().requestFocus();
     }
 
+    //Muestra las instrucciones del juego
     private void showInstructions(){
         try {
             soundPlayer.playPopUpMenu();
@@ -71,6 +90,7 @@ public class Settings {
     }
 
 
+    //Muestra las estadísticas del juego
     private void showStats(){
         try {
             soundPlayer.playPopUpMenu();
@@ -93,6 +113,7 @@ public class Settings {
         return StartGame_btn;
     }
 
+    //Retorna el nombre del jugador
     public String getPlayerName() {
 
         if (playerName_tf.getText().equals("Escriba su nombre de jugador") || playerName_tf.getText().isEmpty()){

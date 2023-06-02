@@ -1,3 +1,21 @@
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ *
+ * Curso de Lenguajes de Programación
+ *
+ * Proyecto 4: Juego de Palabras Fugaces
+ *
+ * Estudiante: Josué Chaves Araya - 2015094068
+ *
+ * I Semestre 2023
+ */
+
+
+
+//Esta clase se encarga de manejar la interfaz gráfica de la aplicacion
+
+
 package palabrasfugaces;
 
 import gamesInterface.GameFunction;
@@ -48,6 +66,7 @@ public class Start extends JInternalFrame implements GameFunction {
         pack();
     }
 
+    //Agrega el evento de iniciar el juego al botón de iniciar juego
     private void addStartGameAction(JButton button){
 
         button.addActionListener(event -> {
@@ -75,6 +94,8 @@ public class Start extends JInternalFrame implements GameFunction {
         });
     }
 
+    //Agrega el evento de ir a la pantalla de inicio al botón de ir a inicio
+    //Se ejecuta cuando el juego termina
     private void goToStartAction(JButton button){
         button.addActionListener(e -> {
 
@@ -97,6 +118,7 @@ public class Start extends JInternalFrame implements GameFunction {
         });
     }
 
+    //Devuelve las estadísticas del juego
     @Override
     public Stat getStats() {
         return new Stat(data.getClave(), data.getNombre(), data.getValor());

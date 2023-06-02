@@ -1,9 +1,25 @@
-package palabrasfugaces;
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ *
+ * Curso de Lenguajes de Programación
+ *
+ * Proyecto 4: Juego de Palabras Fugaces
+ *
+ * Estudiante: Josué Chaves Araya - 2015094068
+ *
+ * I Semestre 2023
+ */
 
+
+
+//Clase que contiene los datos del juego, se utiliza para calcular la puntuación y guardar información relevante
+
+package palabrasfugaces;
 
 import java.util.Random;
 
-//Clase que contiene los datos del juego
+
 public class DataSingleton {
     private static DataSingleton instance = new DataSingleton();
 
@@ -66,6 +82,7 @@ public class DataSingleton {
         this.valor = valor;
     }
 
+    //Agrega puntos dependiendo de si acaba de perder stamina o no
     public void agregarPuntos(){
         if(acabaDePerderStamina){
             setValor(getValor()+1);
@@ -74,10 +91,12 @@ public class DataSingleton {
             setValor(getValor() + 3);
         }
     }
+
     public String getPalabraActual() {
         return palabraActual;
     }
 
+    //Selecciona una palabra aleatoria del arreglo de palabras
     public void setPalabraActual() {
         Random rand = new Random();
         int randomIndex = rand.nextInt(palabras.length-1);
@@ -99,11 +118,15 @@ public class DataSingleton {
         }
     }
 
+
     public int getStamina() {
         return stamina;
     }
+
+    //Pierde stamina y se activa el booleano que indica que acaba de perder stamina
     public void pierdeStamina(){
         this.stamina--;
+        this.acabaDePerderStamina = true;
         if (this.stamina < 0){
             this.stamina = 0;
         }
