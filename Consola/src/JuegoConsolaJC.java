@@ -1,3 +1,16 @@
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ * Curso de Lenguajes
+ *
+ * Proyecto 4: Consola de Juegos
+ *
+ * Josué Chaves Araya  - 2015094068
+ */
+
+//Clase que maneja los juegos o Instancias
+
+
 import javax.swing.JInternalFrame;
 import gamesInterface.GameFunction;
 import gamesInterface.Stat;
@@ -16,6 +29,8 @@ public class JuegoConsolaJC {
     }
 
 
+    //Devuelve la puntuacion del juego
+    //Si la puntuacion actual es mayor a la ultima puntuacion, la actualiza
     public Stat getPuntuacion(){
 
         if ( ((GameFunction) this.frameJuego).getStats().getValor() >= this.ultimaPuntuacion.getValor() ){
