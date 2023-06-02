@@ -2,17 +2,19 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Consola">
   <grid id="27dc6" binding="panel1" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
     <constraints>
-      <xy x="20" y="20" width="800" height="800"/>
+      <xy x="20" y="20" width="658" height="500"/>
     </constraints>
     <properties>
-      <minimumSize width="800" height="800"/>
-      <preferredSize width="800" height="800"/>
+      <minimumSize width="500" height="500"/>
+      <preferredSize width="500" height="500"/>
     </properties>
     <border type="none"/>
     <children>
       <component id="ad7e8" class="javax.swing.JDesktopPane" binding="jdp">
         <constraints/>
-        <properties/>
+        <properties>
+          <enabled value="true"/>
+        </properties>
       </component>
       <component id="db81f" class="javax.swing.JMenuBar" binding="menubar1">
         <constraints/>
