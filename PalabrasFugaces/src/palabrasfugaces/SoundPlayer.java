@@ -1,3 +1,21 @@
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ *
+ * Curso de Lenguajes de Programación
+ *
+ * Proyecto 4: Juego de Palabras Fugaces
+ *
+ * Estudiante: Josué Chaves Araya - 2015094068
+ *
+ * I Semestre 2023
+ */
+
+
+
+//Esta clase se encarga de manejar los sonidos que se reproducen en el juego
+
+
 package palabrasfugaces;
 
 import java.io.BufferedInputStream;
@@ -39,6 +57,7 @@ public class SoundPlayer {
     }
 
 
+    //Este método se encarga de reproducir un sonido
     private void playSound( String soundName) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         audioSrc = getClass().getResourceAsStream(soundName);
@@ -51,8 +70,6 @@ public class SoundPlayer {
         clip.open(audioIn);
         clip.start();
     }
-
-
 
     public void stopSound() {
         clip.stop();

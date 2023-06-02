@@ -1,3 +1,21 @@
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ *
+ * Curso de Lenguajes de Programación
+ *
+ * Proyecto 4: Juego de Palabras Fugaces
+ *
+ * Estudiante: Josué Chaves Araya - 2015094068
+ *
+ * I Semestre 2023
+ */
+
+
+
+//Esta clase se encarga de manejar la interfaz gráfica del juego
+
+
 package palabrasfugaces;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -28,6 +46,7 @@ public class Game {
     private JTextPane panelPalabra_tp;
     private JTextField inputJugador_tf;
     private JToolBar statsJugador_tb;
+    private JLabel puntos_lb;
 
     private ImageIcon heartIcon;
     private ImageIcon staminaIcon;
@@ -35,11 +54,6 @@ public class Game {
     private ScheduledExecutorService executorService;
     private SoundPlayer soundPlayer;
     private DataSingleton data;
-
-//    La lista "faciles" tiene 41 palabras.
-//    La lista "medias" tiene 60 palabras.
-//    La lista "dificiles" tiene 52 palabras.
-
 
     public Game(){
         soundPlayer = SoundPlayer.getInstance();
@@ -52,6 +66,7 @@ public class Game {
         panelPalabra_tp.setEditable(false);
         centerTextPane();
 
+        //Carga las imagenes de los iconos de stamina y corazones en memoria
         try{
             InputStream heartIS = new BufferedInputStream(getClass().getResourceAsStream("/Imgs/heart-sm.png"));
             Image heartImage = ImageIO.read(heartIS);
@@ -65,9 +80,11 @@ public class Game {
             e.printStackTrace();
         }
 
+
         setPlayerInput();
     }
 
+    //Constructor, setea la instancia de DataSingleton
     public void startGame(String pNombreJugaor){
 
         data.setStamina(3);
@@ -77,6 +94,7 @@ public class Game {
         data.setClave("Puntos");
 
         setToolbarIcons(data.getVidas(), data.getStamina());
+        inputJugador_tf.setText("");
         runTimerNextWord();
     }
 
@@ -89,6 +107,7 @@ public class Game {
         return exit_btn;
     }
 
+    //Coloca los iconos de stamina y corazones en la barra de herramientas
     private void setToolbarIcons(int hearts, int stamina){
         statsJugador_tb.removeAll();
 
@@ -106,6 +125,7 @@ public class Game {
 
     }
 
+    //Remueve un corazón de la barra de herramientas
     private void removeHeartToolbar(int totalHearts){
 
         for (int i = 0; i < 3-totalHearts; i++) {
@@ -115,6 +135,7 @@ public class Game {
         statsJugador_tb.repaint();
     }
 
+    //Remueve un icono de stamina de la barra de herramientas
     private void removeStaminaToolbar(int totalStamina){
 
         for (int i = 3; i < 6-totalStamina; i++) {
@@ -135,6 +156,7 @@ public class Game {
         panelPalabra_tp.setText("Escriba la Palabra:\n PALABRA");
     }
 
+    //Cambia la palabra actual en el panel de texto
     private void setPlayerInput(){
 
         this.inputJugador_tf.addKeyListener(new KeyListener() {
@@ -152,12 +174,12 @@ public class Game {
 
             @Override
             public void keyReleased(KeyEvent e) {
+                //Si es la barra espaciadora, entonces baja la stamina
                 if (e.getKeyCode() == KeyEvent.VK_SPACE){
                     inputJugador_tf.setText(inputJugador_tf.getText().substring(0, inputJugador_tf.getText().length() - 1));
 //                    System.out.println("Espacio");
                     if(data.getStamina() > 0){
                         data.pierdeStamina();
-
                         try {
                             soundPlayer.playVerPalabra();
                         } catch (IOException | UnsupportedAudioFileException | LineUnavailableException ioException) {
@@ -167,9 +189,11 @@ public class Game {
                         verPalabra();
                     }
                 }else{
+                    //Verifica que la palabra que se está escribiendo sea igual a la palabra actual
                     if( data.getPalabraActual().equals(inputJugador_tf.getText()) ){
 //                        System.out.println("Palabra Correcta ");
                         data.agregarPuntos();
+                        puntos_lb.setText(String.valueOf("Pts:" + data.getValor()));
                         inputJugador_tf.setText("");
                         runTimerNextWord();
                     }
@@ -207,11 +231,13 @@ public class Game {
 
     }
 
+    //Método que se ejecuta cuando se presiona la barra de espacio
+    //Muestra la palabra por 400ms y luego la borra
     private void verPalabra(){
         executorService = Executors.newSingleThreadScheduledExecutor();
 
         Runnable task = new Runnable() {
-            int ms = 500;
+            int ms = 400;
             @Override
             public void run() {
 
@@ -228,6 +254,7 @@ public class Game {
         executorService.scheduleAtFixedRate(task, 10, 100, TimeUnit.MILLISECONDS);
     }
 
+    //Ejecuta el timer para mostrar la siguiente palabra
     private void runTimerNextWord(){
         executorService = Executors.newSingleThreadScheduledExecutor();
 
@@ -261,6 +288,5 @@ public class Game {
     public void terminarJuego(){
         exit_btn.doClick();
     }
-
 
 }
