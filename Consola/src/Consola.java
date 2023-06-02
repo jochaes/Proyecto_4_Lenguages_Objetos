@@ -1,3 +1,16 @@
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ * Curso de Lenguajes
+ *
+ * Proyecto 4: Consola de Juegos
+ *
+ * Josué Chaves Araya  - 2015094068
+ */
+
+//Clase que se encarga de manejar la interfaz de la consola
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +46,7 @@ public class Consola extends JFrame {
         setSize(800,800);
         setContentPane(jdp);
 
-        this.showStats = new ShowStats();
+        this.showStats = new ShowStats();                   //Ventana de estadisticas
         this.jdp.add(showStats.getInternalFrame());
 
         setActualizarStatsBtn(this.showStats.getActualizarStats_btn());
@@ -66,6 +79,7 @@ public class Consola extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    //Método que se encarga de actualizar el Action listener del botón para cargar .jars
     private void setCargarJar( JMenuItem cargarJarMenuItem ){
 
         cargarJarMenuItem.addActionListener(new ActionListener() {
@@ -74,6 +88,7 @@ public class Consola extends JFrame {
                 try {
                     File file = showSaveDialog();
 
+                    //Verifique que el archivo seleccionado no sea nulo y que no exista una instancia del juego
                     if (file != null && !juegoManager.yaExiste(file.getName())) {
                         JarInputStream jarStream = new JarInputStream(new FileInputStream(file));
                         Manifest mf = jarStream.getManifest();
@@ -111,6 +126,8 @@ public class Consola extends JFrame {
         });
     }
 
+    //Método que se encarga de actualizar el Action listener de los juegos cargados
+    // Los pone visibles en caso de que se haya cerrado
     private void setCargarJuegoMenuItem( JMenuItem juego ){
         juego.addActionListener(new ActionListener(){
 
@@ -123,6 +140,7 @@ public class Consola extends JFrame {
         });
     }
 
+    //Método que se encarga de actualizar el Action listener del botón para mostrar estadísticas
     private void setCargarScores( JMenuItem cargarScoresMenuItem ) {
         cargarScoresMenuItem.addActionListener(new ActionListener() {
             @Override
@@ -130,26 +148,26 @@ public class Consola extends JFrame {
 
                 showStats.getInternalFrame().setVisible(true);
                 showStats.fillTable();
-//                String stats = juegoManager.getEstadisticas();
-//                System.out.println(stats);
 
             }
         });
     }
 
+    //Método que se encarga de actualizar el Action listener del botón para actualizar estadísticas
     private void setActualizarStatsBtn( JButton actualizarStats_btn ) {
         actualizarStats_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showStats.getInternalFrame().setVisible(true);
-                List<String[]> stats = juegoManager.getEstadisticas();
 
+
+                List<String[]> stats = juegoManager.getEstadisticas();  //Obtener estadisticas de los juegos
                 String[][] statsTable = stats.toArray(new String[0][0]);
 
 
                 String[] columns = {"Juego", "Jugador","Clave", "Puntaje"};
                 if( !stats.isEmpty()){
-                    showStats.actualizarStatsTable(statsTable ,columns);
+                    showStats.actualizarStatsTable(statsTable ,columns); //Actualizar tabla de estadisticas
                 }
             }
         });
