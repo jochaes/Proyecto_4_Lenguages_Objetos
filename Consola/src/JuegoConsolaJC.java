@@ -2,13 +2,13 @@ import javax.swing.JInternalFrame;
 import gamesInterface.GameFunction;
 import gamesInterface.Stat;
 
-public class Juego {
+public class JuegoConsolaJC {
 
     private JInternalFrame frameJuego;
     private String nombreJuego;
 
 
-    public Juego(JInternalFrame frameJuego, String nombreJuego) {
+    public JuegoConsolaJC(JInternalFrame frameJuego, String nombreJuego) {
         this.frameJuego = frameJuego;
         this.nombreJuego = nombreJuego;
     }

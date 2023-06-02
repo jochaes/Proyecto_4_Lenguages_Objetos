@@ -1,5 +1,3 @@
-import gamesInterface.GameFunction;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +9,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
@@ -22,7 +19,7 @@ public class Consola extends JFrame {
     private JPanel panel1;
     private JDesktopPane jdp;
     private JMenuBar menubar1;
-    private JuegoManager juegoManager;
+    private JuegoManagerJC juegoManager;
 
     private ShowStats showStats;
 
@@ -33,7 +30,7 @@ public class Consola extends JFrame {
 
 
         //Inicializar la interfaz
-        this.juegoManager = new JuegoManager();
+        this.juegoManager = new JuegoManagerJC();
         setTitle("Consola de Juegos");
         setSize(800,800);
         setContentPane(jdp);
@@ -91,10 +88,11 @@ public class Consola extends JFrame {
                                 Main.class.getClassLoader()
                         );
                         Class classToLoad = Class.forName(mainClass, true, child);
+
                         //no debe declararse la instancia del juego cargado si esta ya ha sido cargada previamente
                         JInternalFrame instance = (JInternalFrame) classToLoad.getDeclaredConstructor().newInstance();
                         instance.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                        juegoManager.addJuego( new Juego(instance, file.getName()) );
+                        juegoManager.addJuego( new JuegoConsolaJC(instance, file.getName()) );
                         jdp.add(instance);
                         ((Component) instance).setVisible(true);
 
