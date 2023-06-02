@@ -95,6 +95,7 @@ public class Game {
 
         setToolbarIcons(data.getVidas(), data.getStamina());
         inputJugador_tf.setText("");
+        puntos_lb.setText("Puntos: 0" );
         runTimerNextWord();
     }
 

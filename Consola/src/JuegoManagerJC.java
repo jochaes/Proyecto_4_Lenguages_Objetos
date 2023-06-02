@@ -16,9 +16,9 @@ public class JuegoManagerJC {
     }
 
     public void addJuego(JuegoConsolaJC juego){
-        this.juegos.add(juego);
         if( !this.nombresJuegos.contains(juego.getNombreJuego()) ){
             this.nombresJuegos.add(juego.getNombreJuego());
+            this.juegos.add(juego);
         }
     }
 
