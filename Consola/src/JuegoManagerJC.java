@@ -1,3 +1,16 @@
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ * Curso de Lenguajes
+ *
+ * Proyecto 4: Consola de Juegos
+ *
+ * Josué Chaves Araya  - 2015094068
+ */
+
+//Clase que se encarga de manejar los juegos
+
+
 import gamesInterface.Stat;
 
 import java.util.ArrayList;
@@ -6,7 +19,9 @@ import java.util.List;
 
 public class JuegoManagerJC {
 
+    //Lista de las instancias de los juegos
     List<JuegoConsolaJC> juegos;
+    //Lista de los nombres de los juegos
     List<String> nombresJuegos;
 
 
@@ -15,6 +30,7 @@ public class JuegoManagerJC {
         this.nombresJuegos = new ArrayList<>();
     }
 
+    //Añade un nuevo juego a la lista de juegos
     public void addJuego(JuegoConsolaJC juego){
         this.juegos.add(juego);
         if( !this.nombresJuegos.contains(juego.getNombreJuego()) ){
@@ -23,7 +39,7 @@ public class JuegoManagerJC {
     }
 
     //Devuelve un alista con las estadisticas más altas por juego
-    //Por cada juego, hace un filtro de todas las instancias y compara todas estas para obtener la mayor
+    //Por cada juego obtiene la estadistica con el valor más alto (Actualiza el puntaje si el nuevo es mayor)
     public List<String[]> getEstadisticas(){
         List<String[]> mejoresPuntuaciones = new ArrayList<String[]>();
 
@@ -36,6 +52,7 @@ public class JuegoManagerJC {
         return mejoresPuntuaciones;
     }
 
+    //Se encarag de verificar que no se cargue un juego que ya esta cargado
     public boolean yaExiste(String nombreJuego){
 
 

@@ -1,3 +1,15 @@
+/**
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Computación
+ * Curso de Lenguajes
+ *
+ * Proyecto 4: Consola de Juegos
+ *
+ * Josué Chaves Araya  - 2015094068
+ */
+
+//Clase que se encarga de mostrar las estadisticas de los juegos
+
 import javax.swing.*;
 
 public class ShowStats extends JInternalFrame{
@@ -20,14 +32,7 @@ public class ShowStats extends JInternalFrame{
         pack();
     }
 
-    public JInternalFrame getInternalFrame(){
-        return mainFrame;
-    }
-
-    public JButton getActualizarStats_btn() {
-        return actualizarStats_btn;
-    }
-
+    //Actualiza la tabla de estadisticas
     public void actualizarStatsTable(String[][] data, String[] columnNames){
         this.statsTable = new JTable(data, columnNames);
         this.tabla_sp.setViewportView(statsTable);
@@ -41,6 +46,18 @@ public class ShowStats extends JInternalFrame{
         this.tabla_sp.setViewportView(statsTable);
 
     }
+
+    public JInternalFrame getInternalFrame(){
+        return mainFrame;
+    }
+
+    public JButton getActualizarStats_btn() {
+        return actualizarStats_btn;
+    }
+
+
+
+
 
 
 
